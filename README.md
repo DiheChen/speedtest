@@ -9,7 +9,7 @@ This is the cause:
 ### With Docker
 
 ```bash
-docker run -d -p 80:80 -e HOST=0.0.0.0 -e PORT=80 --name speedtest dihechen/speedtest:latest
+docker run -d -p 80:80 -e PORT=80 --name speedtest dihechen/speedtest:latest
 ```
 
 ### With Helm
