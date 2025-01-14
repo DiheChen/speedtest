@@ -19,89 +19,129 @@ const (
 var tmpl = template.Must(template.New("home").Parse(`
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>HTTP Speed Test</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-			background-color: #f4f4f9;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
-		}
-		h1 {
-			color: #333;
-			text-align: center;
-		}
-		form {
-			margin-top: 20px;
-			max-width: 400px;
-			width: 90%;
-			background-color: #fff;
-			padding: 20px;
-			border-radius: 8px;
-			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-		}
-		label {
-			display: block;
-			margin-bottom: 8px;
-			font-weight: bold;
-		}
-		input[type="number"],
-		select {
-			width: 100%;
-			padding: 10px;
-			margin-bottom: 10px;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-			box-sizing: border-box;
-		}
-		input[type="submit"] {
-			background-color: #007bff;
-			color: white;
-			padding: 10px 15px;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-			width: 100%;
-		}
-		input[type="submit"]:hover {
-			background-color: #0056b3;
-		}
-		@media (max-width: 600px) {
-			form {
-				padding: 15px;
-			}
-			input[type="number"],
-			select,
-			input[type="submit"] {
-				padding: 12px;
-			}
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Speed Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 400px;
+            width: 90%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+
+            input[type="number"],
+            select,
+            input[type="submit"] {
+                padding: 14px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-	<div>
-		<h1>HTTP Speed Test</h1>
-		<form action="/download" method="get">
-			<label for="size">Enter size in bytes:</label>
-			<input type="number" id="size" name="size" value="104857600" min="1" required>
-			<label for="chunk_size">Select chunk size:</label>
-			<select id="chunk_size" name="chunk_size">
-				<option value="1048576">1 MB</option>
-				<option value="5242880">5 MB</option>
-				<option value="10485760" selected>10 MB</option>
-				<option value="20971520">20 MB</option>
-			</select>
-			<input type="submit" value="Start Download">
-		</form>
-	</div>
+    <div>
+        <h1>HTTP Speed Test</h1>
+        <form action="/download" method="get">
+            <label for="size">Enter size in bytes:</label>
+            <input type="number" id="size" name="size" value="104857600" min="1" required>
+            <label for="chunk_size">Select chunk size:</label>
+            <select id="chunk_size" name="chunk_size">
+                <option value="1048576">1 MB</option>
+                <option value="5242880">5 MB</option>
+                <option value="10485760" selected>10 MB</option>
+                <option value="20971520">20 MB</option>
+            </select>
+            <input type="submit" value="Start Download">
+        </form>
+    </div>
+    <div class="footer">
+        <a href="https://github.com/DiheChen/speedtest" target="_blank">View on GitHub</a>
+    </div>
 </body>
+
 </html>
 `))
 
