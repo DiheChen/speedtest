@@ -13,7 +13,7 @@ RUN apk add --no-cache xz curl && \
     go build -ldflags "-s -w" && \
     ./upx speedtest
 
-FROM alpine:latest
+FROM scratch
 
 WORKDIR /app
 COPY --from=builder /app/speedtest /app/
